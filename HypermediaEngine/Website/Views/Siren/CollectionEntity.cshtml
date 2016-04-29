@@ -1,0 +1,13 @@
+﻿<!-- ko switch -->
+<!-- ko case: _.contains($data.class(), 'paintings') -->
+@Html.Partial(Url.Content("siren/entities/collection/paintings/paintingsCollection.cshtml"))
+<!-- /ko -->
+
+<!-- ko case: _.contains($data.class(), 'films') -->
+@Html.Partial(Url.Content("siren/entities/collection/films/filmsCollection.cshtml"))
+<!-- /ko -->
+
+<!-- ko case: $else -->
+@Html.Partial(Url.Content("siren/entities/collection/tableCollection.cshtml"))
+<!-- /ko -->
+<!-- /ko -->

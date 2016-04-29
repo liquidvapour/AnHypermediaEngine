@@ -1,0 +1,15 @@
+div.option {
+    padding: 4px 18px 6px;
+    display: inline-block;
+    background-color: #D0D0D0;
+    border-color: #D0D0D0;
+    border-radius: 6px;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0 0 7px dimgray inset;
+}
+
+div.active {
+    border-color: #E77481;
+    box-shadow: 0 0 10px #E77481;
+}

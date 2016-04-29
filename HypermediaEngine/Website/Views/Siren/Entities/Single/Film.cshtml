@@ -1,0 +1,37 @@
+﻿<div>
+    <div data-bind="if: $data.isVisible()" class="row">
+        <div style="padding: 10px 10px 10px 10px">
+            <div class="pfblock-header">
+                <div data-bind="with: $data.properties" class="pfblock-subtitle">
+                    <div data-bind="foreachproperty: $data">
+                        <!-- ko switch -->
+                        <!-- ko case:  $data.value().substring(0, 7) === 'http://' -->
+                        <div class="wow fadeInBottom animated" data-wow-delay=".1s" style="float: left">
+                            <img src="#" alt="" data-bind="attr: { src: $data.value }" style="width: 314px; height: 417px; max-width: 314px; max-height: 417px;" />
+                        </div>
+                        <!-- /ko -->
+
+                        <!-- ko case: $else -->
+                        <div class="wow fadeInBottom animated" data-wow-delay=".1s">
+                            <span data-bind="text: $data.value" />
+                        </div>
+                        <!-- /ko -->
+                        <!-- /ko -->        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @Html.Partial(Url.Content("siren/actions.cshtml"))
+    
+    <div class="row text-center">
+        <div class="col-sm-6 col-sm-offset-3">
+            <!-- ko foreach: $data.links -->
+            <!-- ko if: _.contains($data.rel(), 'films') == false -->
+            <a href="#" data-bind="click: $data.execute.bind($data), text: title" class="wow fadeInUp animated" data-wow-delay=".1s" style="text-transform: capitalize;"></a>&nbsp;&nbsp;&nbsp;
+            <!-- /ko -->
+            <!-- /ko -->
+        </div>
+    </div>
+</div>

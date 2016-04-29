@@ -1,0 +1,9 @@
+﻿<!-- ko if: $data.type() == 'select' -->
+<label data-bind="text: $data.prompt, attr: { for: $data.name }"></label>
+
+<div data-bind="attr: { name: $data.name }, foreach: $data.options">
+    <div data-bind="click: $parent.toggleOption.bind($parent), css: { option: true, active: $data.isSelected }">
+        <span data-bind="text: $data.key"></span>
+    </div>
+</div>
+<!-- /ko -->

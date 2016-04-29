@@ -1,0 +1,39 @@
+﻿<!-- ko with: $data.activeAction -->
+<div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+        <div class="pfblock-header">
+            <h2 data-bind="text: $data.title" class="pfblock-title"></h2>
+            <div class="pfblock-line"></div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+        <div role="form">
+            <span data-bind="text: error" style="color: red"></span>
+            <div class="ajax-hidden text-center">
+                <!-- ko foreach: fields -->
+                <div class="form-group wow fadeInUp animated" data-wow-delay=".1s">
+                    @Html.Partial(Url.Content("siren/actions/fields/textField.cshtml"))
+                    @Html.Partial(Url.Content("siren/actions/fields/multiSelectField.cshtml"))
+                </div>
+                <!-- /ko -->
+                
+                <button data-bind="click: $data.execute.bind($data), text: name" type="submit" class="btn btn-lg wow fadeInUp animated" data-wow-delay=".1s"></button>
+
+                <!-- ko switch -->
+                <!-- ko case: $parent instanceof ActionEntity -->
+                <button data-bind="visible: $data !== $parent.defaultAction(), click: $parent.deactivateAction.bind($parent), text: 'Cancel'" type="submit" class="btn btn-lg wow fadeInUp animated" data-wow-delay=".1s"></button>
+                <!-- /ko -->
+                <!-- ko case: $else -->
+                <button data-bind="click: $parent.deactivateAction.bind($parent), text: 'Cancel'" type="submit" class="btn btn-lg wow fadeInUp animated" data-wow-delay=".1s"></button>
+                <!-- /ko -->
+                <!-- /ko -->
+            </div>
+
+            <div class="ajax-response"></div>
+        </div>
+    </div>
+</div>
+<!-- /ko -->

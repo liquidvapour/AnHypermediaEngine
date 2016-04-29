@@ -1,0 +1,276 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D9C3F804-C033-4625-8F63-DB7140762D18}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HypermediaEngine</RootNamespace>
+    <AssemblyName>HypermediaEngine</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>false</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="FluentValidation, Version=5.6.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.5.6.2.0\lib\Net45\FluentValidation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Nancy, Version=1.4.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Nancy.1.4.1\lib\net40\Nancy.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Nancy.Authentication.Stateless, Version=1.4.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Nancy.Authentication.Stateless.1.4.1\lib\net40\Nancy.Authentication.Stateless.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Nancy.Hosting.Aspnet, Version=1.4.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Nancy.Hosting.Aspnet.1.4.1\lib\net40\Nancy.Hosting.Aspnet.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Nancy.Serialization.JsonNet, Version=1.4.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Nancy.Serialization.JsonNet.1.4.1\lib\net40\Nancy.Serialization.JsonNet.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Nancy.Validation.FluentValidation, Version=1.4.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Nancy.Validation.FluentValidation.1.4.1\lib\net40\Nancy.Validation.FluentValidation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Nancy.ViewEngines.Razor, Version=1.4.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Nancy.Viewengines.Razor.1.4.1\lib\net40\Nancy.ViewEngines.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.30506.0\lib\net40\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Website\Scripts\Knockout\ModalBinding.js" />
+    <Content Include="Website\Scripts\Knockout\ForEachPropertyBinding.js" />
+    <Content Include="Website\Scripts\Siren\Entities\Collections\CollectionEntityItem.js" />
+    <Content Include="Website\Scripts\Siren\Entities\Collections\CollectionEntity.js" />
+    <Content Include="Website\Scripts\Siren\Entities\Collections\FilmsCollection.js" />
+    <Content Include="Website\Scripts\Siren\Entities\Collections\FilmsCollectionItem.js" />
+    <Content Include="Website\Scripts\Siren\Entities\Single\ActionEntity.js" />
+    <Content Include="Website\Scripts\Siren\Entities\Single\Unauthorised.js" />
+    <Content Include="Website\Scripts\Siren\MultiSelectFieldOption.js" />
+    <Content Include="Website\Scripts\Siren\MultiSelectField.js" />
+    <Content Include="Website\Scripts\Siren\Entities\Single\Root\Menu.js" />
+    <Content Include="Website\Scripts\Siren\Entities\Single\Root\Root.js" />
+    <Content Include="Website\Scripts\Application.js" />
+    <Content Include="Website\Scripts\Siren\Action.js" />
+    <Content Include="Website\Scripts\Siren\Entity.js" />
+    <Content Include="Website\Scripts\Siren\Field.js" />
+    <Content Include="Website\Scripts\Siren\Link.js" />
+    <Content Include="Website\Scripts\Siren\Properties.js" />
+    <Content Include="Web.config" />
+    <Content Include="Website\Styles\Books\book.css" />
+    <Content Include="Website\Styles\Books\booksCollection.css" />
+    <Content Include="Website\Styles\Actions\Fields\multiSelectField.css" />
+    <Content Include="Website\Styles\CollectionEntity\collectionEntity.css" />
+    <Content Include="Website\Views\Siren\Actions\Fields\TextField.cshtml" />
+    <Content Include="Website\Views\Siren\Actions.cshtml" />
+    <Content Include="Website\Views\Siren\Entities\Single\Entity.cshtml" />
+    <Content Include="Website\Views\Siren\Actions\ActiveActionLinks.cshtml" />
+    <Content Include="Website\Views\Siren\Actions\ActiveAction.cshtml" />
+    <Content Include="Website\Views\Root.cshtml" />
+    <Content Include="Website\Views\CurrentResponse.cshtml" />
+    <Content Include="Website\Views\Siren\CollectionEntity.cshtml" />
+    <Content Include="Website\Views\Siren\Actions\Fields\MultiSelectField.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="API\Authenticated\Books\Get\GetBook.cs" />
+    <Compile Include="API\Authenticated\Books\Get\Book.cs" />
+    <Compile Include="API\Authenticated\Books\List\GetBooks.cs" />
+    <Compile Include="API\Authenticated\Books\List\BooksCollection.cs" />
+    <Compile Include="API\Authenticated\Books\List\BooksCollectionItem.cs" />
+    <Compile Include="API\Authenticated\Books\BooksModule.cs" />
+    <Compile Include="API\Authenticated\Films\Update\PostFilmSuccess.cs" />
+    <Compile Include="API\Authenticated\Films\Update\PostFilm.cs" />
+    <Compile Include="API\Authenticated\Films\List\GetFilms.cs" />
+    <Compile Include="API\Authenticated\Films\Get\GetFilm.cs" />
+    <Compile Include="API\Authenticated\Films\Get\Film.cs" />
+    <Compile Include="API\Authenticated\Films\List\FilmsCollection.cs" />
+    <Compile Include="API\Authenticated\Films\List\FilmsCollectionItem.cs" />
+    <Compile Include="API\Authenticated\Films\FilmsModule.cs" />
+    <Compile Include="API\Authenticated\Films\Update\PostFilmValidator.cs" />
+    <Compile Include="API\Authenticated\Paintings\PaintingsModule.cs" />
+    <Compile Include="API\Authenticated\Paintings\Get\Painting.cs" />
+    <Compile Include="API\Authenticated\Paintings\Get\GetPainting.cs" />
+    <Compile Include="API\Authenticated\Paintings\List\PaintingsCollection.cs" />
+    <Compile Include="API\Authenticated\Paintings\List\PaintingsCollectionItem.cs" />
+    <Compile Include="API\Authenticated\Paintings\List\GetPaintings.cs" />
+    <Compile Include="API\Authenticated\Root\Get\GetRoot.cs" />
+    <Compile Include="API\Authenticated\Users\Claims\PutClaimsValidator.cs" />
+    <Compile Include="API\Authenticated\Users\Delete\DeleteUserSuccess.cs" />
+    <Compile Include="API\Authenticated\Users\Get\GetUser.cs" />
+    <Compile Include="API\Authenticated\Users\Claims\PutClaims.cs" />
+    <Compile Include="API\Authenticated\Users\Get\User.cs" />
+    <Compile Include="API\Authenticated\Users\Delete\DeleteUser.cs" />
+    <Compile Include="API\Authenticated\Users\List\UsersCollection.cs" />
+    <Compile Include="API\Authenticated\Users\List\UsersCollectionItem.cs" />
+    <Compile Include="API\Authenticated\Users\UsersModule.cs" />
+    <Compile Include="API\Authenticated\Users\List\GetUsers.cs" />
+    <Compile Include="API\Authenticated\Root\Get\Root.cs" />
+    <Compile Include="API\Authenticated\Root\RootModule.cs" />
+    <Compile Include="API\Infrastructure\Extensions\ContextExtensions.cs" />
+    <Compile Include="API\Infrastructure\Errors\InternalServerErrorHandler.cs" />
+    <Compile Include="API\Infrastructure\Errors\NotFoundErrorHandler.cs" />
+    <Compile Include="API\Infrastructure\Errors\Responses\BadRequestResponse.cs" />
+    <Compile Include="API\Infrastructure\Errors\Responses\InternalServerErrorResponse.cs" />
+    <Compile Include="API\Infrastructure\Errors\Responses\NotFoundResponse.cs" />
+    <Compile Include="API\Infrastructure\Errors\Responses\UnauthorisedResponse.cs" />
+    <Compile Include="API\Infrastructure\Errors\UnauthorisedErrorHandler.cs" />
+    <Compile Include="API\Infrastructure\Exceptions\HypermediaEngineException.cs" />
+    <Compile Include="API\Infrastructure\Modules\ApiModule.cs" />
+    <Compile Include="API\Infrastructure\Modules\AuthenticatedApiModule.cs" />
+    <Compile Include="API\Infrastructure\Extensions\ModuleExtensions.cs" />
+    <Compile Include="API\Infrastructure\Siren\PagedProperties.cs" />
+    <Compile Include="API\Public\Authentication\AuthenticationModule.cs" />
+    <Compile Include="API\Public\Authentication\Responses\LogoutSuccess.cs" />
+    <Compile Include="API\Public\Authentication\Responses\LoginFailed.cs" />
+    <Compile Include="API\Public\Authentication\Responses\LoginSuccess.cs" />
+    <Compile Include="API\Public\Authentication\Responses\LoginResponse.cs" />
+    <Compile Include="API\Public\Authentication\Requests\DeleteLogout.cs" />
+    <Compile Include="API\Public\Authentication\Requests\PostLogin.cs" />
+    <Compile Include="API\Public\Authentication\Requests\PostLoginValidator.cs" />
+    <Compile Include="API\Public\Register\Requests\PostRegister.cs" />
+    <Compile Include="API\Public\Register\Requests\PostRegisterValidator.cs" />
+    <Compile Include="API\Public\ResetPassword\Requests\PostResetPassword.cs" />
+    <Compile Include="API\Public\Register\Responses\RegisterFailedWithUsernameAlreadyRegistered.cs" />
+    <Compile Include="API\Public\Register\RegisterModule.cs" />
+    <Compile Include="Bootstrapper.cs" />
+    <Compile Include="API\Infrastructure\Requests\Commands\ApiCommand.cs" />
+    <Compile Include="API\Infrastructure\Requests\Commands\ApiCommandValidator.cs" />
+    <Compile Include="API\Infrastructure\Requests\Queries\ApiQuery.cs" />
+    <Compile Include="API\Infrastructure\Requests\Queries\ApiQueryPaged.cs" />
+    <Compile Include="API\Infrastructure\Requests\ApiRequest.cs" />
+    <Compile Include="API\Infrastructure\Siren\ActionsFactory.cs" />
+    <Compile Include="API\Infrastructure\Siren\LinksFactory.cs" />
+    <Compile Include="API\Infrastructure\Users\UserIdentity.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Website\Scripts\Knockout\Mapping\SirenMappings.js" />
+    <Compile Include="Website\WebsiteModule.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <Content Include="Website\Views\Index.cshtml" />
+    <Content Include="Website\Views\Siren\Properties.cshtml" />
+    <Content Include="Website\Views\Siren\Properties\TextProperty.cshtml" />
+    <Content Include="Website\Views\Siren\Properties\ImageProperty.cshtml" />
+    <Content Include="Website\Views\Siren\Entities\Collection\TableCollection.cshtml" />
+    <Content Include="Website\Views\Siren\Entities\Collection\Paintings\PaintingsCollection.cshtml" />
+    <Content Include="Website\Views\Siren\Entities\Collection\Paintings\PaintingsCollectionItem.cshtml" />
+    <Content Include="Website\Views\Siren\Entities\Collection\Films\FilmsCollectionItem.cshtml" />
+    <Content Include="Website\Views\Siren\Entities\Collection\Films\FilmsCollection.cshtml" />
+    <Content Include="Website\Views\Siren\Entities\Single\Painting.cshtml" />
+    <Content Include="Website\Views\Siren\Entities\Single\Film.cshtml" />
+    <Content Include="Website\Views\Siren\Entity.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Website\Fonts\" />
+    <Folder Include="Website\Images\" />
+    <Folder Include="Website\Scripts\Vendor\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Api.Hypermedia.Siren\Hypermedia.Siren.csproj">
+      <Project>{3b2780c4-3a98-422e-a1d0-59d8d1db8a36}</Project>
+      <Name>Hypermedia.Siren</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Core\Core.csproj">
+      <Project>{15FF1DDB-D62E-4437-971A-42C0E8234E94}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Domain\Domain.csproj">
+      <Project>{918FD097-BFC6-460E-8F90-627BE5D64187}</Project>
+      <Name>Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Persistency.InMemory\Persistency.InMemory.csproj">
+      <Project>{3EDA007F-7A79-47B9-9A75-1342A58F42FD}</Project>
+      <Name>Persistency.InMemory</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>5303</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost/HypermediaEngine</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+    <Error Condition="!Exists('..\packages\Nancy.Viewengines.Razor.1.4.1\build\Nancy.ViewEngines.Razor.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Nancy.Viewengines.Razor.1.4.1\build\Nancy.ViewEngines.Razor.targets'))" />
+  </Target>
+  <Import Project="..\packages\Nancy.Viewengines.Razor.1.4.1\build\Nancy.ViewEngines.Razor.targets" Condition="Exists('..\packages\Nancy.Viewengines.Razor.1.4.1\build\Nancy.ViewEngines.Razor.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,13 @@
+﻿<div data-bind="with: $data.properties" class="pfblock-subtitle">
+    <div data-bind="foreachproperty: $data">
+        <!-- ko switch -->
+        <!-- ko case:  $data.value().substring(0, 7) === 'http://' -->
+        @Html.Partial(Url.Content("siren/properties/imageProperty.cshtml"))
+        <!-- /ko -->
+
+        <!-- ko case: $else -->
+        @Html.Partial(Url.Content("siren/properties/textProperty.cshtml"))
+        <!-- /ko -->
+        <!-- /ko -->        
+    </div>
+</div>

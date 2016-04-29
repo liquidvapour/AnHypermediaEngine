@@ -1,0 +1,52 @@
+﻿<div class="container">
+    <div class="row">
+        <div class="col-sm-6 col-sm-offset-3">
+            <div class="pfblock-header">
+                <h2 data-bind="text: $data.title" class="pfblock-title"></h2>
+
+                <div class="pfblock-line"></div>
+                <div data-bind="with: $data.properties" class="pfblock-subtitle">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <table data-bind="if: $data.entities" class="table table-striped table-bordered text-center">
+        <thead data-bind="with: $data.entities()[0]">
+            <tr>
+                <!-- ko foreachproperty: $data.properties -->
+                <th class="text-center" data-bind="text: $data.key" style="text-transform: capitalize;"></th>
+                <!-- /ko -->
+
+                <!-- ko if: $data.deleteAction() -->
+                <th></th>
+                <!-- /ko -->
+            </tr>
+        </thead>
+        <tbody data-bind="foreach: $data.entities">
+            <tr>
+                <!-- ko foreachproperty: $data.properties -->
+                <td data-bind="text: $data.value, click: $parent.detailsLink().execute.bind($parent.detailsLink())"></td>
+                <!-- /ko -->
+                
+                <!-- ko if: $data.deleteAction() -->
+                <td><a href="#" data-bind="click: $data.deleteAction().execute.bind($data.deleteAction())">Delete</a></td>
+                <!-- /ko -->
+            </tr>
+        </tbody>
+    </table>
+    
+    <div class="form-group text-center">
+        <span data-bind="text: $data.properties['page Details']" ></span>
+    
+        <!-- ko if: links -->
+        <div data-bind="foreach: links">
+            <a href="#" data-bind="click: $data.execute.bind($data)">
+                <span data-bind="text: $data.title"></span>
+            </a>
+        </div>
+        <!-- /ko -->
+        
+        <span data-bind="if: !$data.entities">No results.</span>
+    </div>
+</div>
