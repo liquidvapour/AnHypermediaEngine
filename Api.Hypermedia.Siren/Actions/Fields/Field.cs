@@ -2,7 +2,7 @@ namespace Hypermedia.Siren.Actions.Fields
 {
     public abstract class Field
     {
-        public string Prompt { get; set; }
+        public string Title { get; set; }
 
         public string Name { get; set; }
 
@@ -10,9 +10,9 @@ namespace Hypermedia.Siren.Actions.Fields
 
         public bool Required { get; set; }
 
-        protected Field(string prompt, string name, string type, bool required = true)
+        protected Field(string title, string name, string type, bool required = true)
         {
-            Prompt = prompt;
+            Title = title;
             Name = name;
             Type = type;
             Required = required;

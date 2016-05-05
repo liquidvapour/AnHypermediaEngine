@@ -3,7 +3,7 @@ namespace Acceptance.Infrastructure.Hypermedia
     public class Field
     {
         public string Name { get; set; }
-        public string Prompt { get; set; }
+        public string Title { get; set; }
 
         public string Type { get; set; }
 

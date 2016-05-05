@@ -8,7 +8,7 @@ namespace Hypermedia.Siren.Actions.Fields
         public string[] Value { get; set; }
         public KeyValuePair<string, string>[] Options { get; set; }
 
-        public MultiSelectField(string prompt, string name, IEnumerable<KeyValuePair<string, string>> options, string[] value = null, bool required = false) : base(prompt, name, "select", required)
+        public MultiSelectField(string title, string name, IEnumerable<KeyValuePair<string, string>> options, string[] value = null, bool required = false) : base(title, name, "select", required)
         {
             Value = value;
             Options = options.ToArray();

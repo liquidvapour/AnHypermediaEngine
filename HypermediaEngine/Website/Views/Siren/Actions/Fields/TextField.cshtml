@@ -1,4 +1,4 @@
 ﻿<!-- ko if: $data.type() == 'string' || $data.type() == 'password'-->
-<label class="sr-only" data-bind="text: prompt, attr: { for: name }"></label>
-<input data-bind="value: $data.value, attr: { name: name, type: type, placeholder: prompt }" class="form-control">
+<label class="sr-only" data-bind="text: title, attr: { for: name }"></label>
+<input data-bind="value: $data.value, attr: { name: name, type: type, placeholder: title }" class="form-control">
 <!-- /ko -->
