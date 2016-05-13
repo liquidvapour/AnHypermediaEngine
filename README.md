@@ -44,15 +44,13 @@ Low support overhead as partners usually find it easy to integrate since the Dom
     	* The application is the last layer with the default behaviour of rebinding the current response.
     		* The application also handles unexpected errors as exceptions (i.e.: no state transition).
     * Extensions
-    	* Customised CSS (i.e.: Books) 
+    	* Styles (i.e.: Books) 
 	    	* BooksCollection.css
 	    	* Book.css
-    	* Customised HTML (i.e.: Paintings)
+    	* Layout (i.e.: Paintings)
 	    	* PaintingsCollection.cshtml
 	    	* PaintingsCollectionItem.cshtml
-    	* Customised HTML / Javascript (i.e.: Films)
-	    	* FilmsCollection.cshtml
-	    	* FilmsCollectionItem.cshtml
+    	* Behaviour (i.e.: Films)
 	    	* FilmsCollection.js
 	    	* FilmsCollectionItem.js
 * Patterns
@@ -111,5 +109,5 @@ Low support overhead as partners usually find it easy to integrate since the Dom
 
 
 ## Food for Thought
-* What is the rootResponse.js? What is the currentResponse.js? What is the application.js?
+* What is the  application.js? What is the root.js? What is the entity.js?
 * Could we implement the API as a full blown FSM using only the API requests and responses?
