@@ -11,9 +11,10 @@ Hope you enjoy and find something useful here!
 ## Abstract
 **Integrating through interfaces is fragile...** anytime there's a new feature we have to **develop it on the server and re-deploy**; then **develop it on the client and re-deploy**; the contracts are communicated **out-of-band and hard-coded** (urls, verbs, parameters, validation, application state transitions, ...); then there's outdated clients and **breaking changes**... that lead to convoluted **versioning mechanisms**... ... ... alas it's fragile.
 
+<br />
 >"So, REST is designed to steer developers toward handling change by observing and *adapting to changes in content instead of interfaces.*" - Roy Fielding
 
-
+<br />
 Hypermedia **reflects business processes** at an application level (Domain Application Protocol).
 
 The client is decoupled from the server, meaning changes to the business processes are communicated instantly by the server, promoting business reactiveness at an application level.
