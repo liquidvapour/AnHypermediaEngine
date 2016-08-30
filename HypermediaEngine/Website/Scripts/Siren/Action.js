@@ -17,7 +17,7 @@
         this.actionLinkName("Edit");
     }
     else {
-        this.actionLinkName(this.name());
+        this.actionLinkName(this.title());
     }
 
     return this;
