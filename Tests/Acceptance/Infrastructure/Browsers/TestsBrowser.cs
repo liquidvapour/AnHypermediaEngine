@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using CsQuery.ExtensionMethods;
-using Nancy.Testing;
 using Nancy.TinyIoc;
+using Nancy.Testing;
 
 namespace Acceptance.Infrastructure.Browsers
 {

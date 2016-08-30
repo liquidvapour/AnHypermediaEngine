@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Hypermedia.Siren;
+using Siren;
 
 namespace HypermediaEngine.API.Public.Authentication.Responses
 {

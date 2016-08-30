@@ -1,4 +1,5 @@
 ﻿using Nancy;
+using Nancy.Security;
 
 namespace HypermediaEngine.Website
 {
@@ -6,7 +7,7 @@ namespace HypermediaEngine.Website
     {
         public WebsiteModule()
         {
-            //this.RequiresHttps(true);
+            this.RequiresHttps(true);
             Get["/"] = _ => View["Index"];
         }
     }

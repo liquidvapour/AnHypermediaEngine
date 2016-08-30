@@ -1,9 +1,9 @@
 ﻿using Core.Primitives;
-using HypermediaEngine.API.Infrastructure.Requests.Commands;
+using HypermediaEngine.API.Infrastructure.Requests.Actions;
 
 namespace HypermediaEngine.API.Public.Authentication.Requests
 {
-    public class PostLogin : ApiCommand
+    public class PostLogin : ApiAction
     {
         public string Username { get; set; }
         public string Password { get; set; }

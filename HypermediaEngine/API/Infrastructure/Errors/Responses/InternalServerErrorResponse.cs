@@ -1,6 +1,6 @@
 using System.Collections.Generic;
-using Hypermedia.Siren;
 using Nancy;
+using Siren;
 
 namespace HypermediaEngine.API.Infrastructure.Errors.Responses
 {

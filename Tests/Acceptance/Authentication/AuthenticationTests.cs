@@ -55,7 +55,7 @@ namespace Acceptance.Authentication
 
         private void it_logs_out(Entity authenticated)
         {
-            var logoutAction = authenticated.Actions.Single(x => x.Name == "log out");
+            var logoutAction = authenticated.Actions.Single(x => x.Name == "log-out");
 
             var logoutResponse = _browser.Delete(logoutAction.Href, http => http.Header("Authorization", _accessToken));
 

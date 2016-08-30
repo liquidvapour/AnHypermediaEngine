@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using HypermediaEngine;
 using HypermediaEngine.API.Infrastructure.Users;
 using Moq;
-using Nancy.Testing;
 using Nancy.TinyIoc;
+using Nancy.Testing;
 
 namespace Acceptance.Infrastructure.Browsers
 {

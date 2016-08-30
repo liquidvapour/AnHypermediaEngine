@@ -1,11 +1,11 @@
 ﻿using System.Linq;
 using Core.Primitives;
 using FluentValidation;
-using HypermediaEngine.API.Infrastructure.Requests.Commands;
+using HypermediaEngine.API.Infrastructure.Requests.Actions;
 
 namespace HypermediaEngine.API.Authenticated.Users.Claims
 {
-    public class PutClaimsValidator : ApiCommandValidator<PutClaims>
+    public class PutClaimsValidator : ApiActionValidator<PutClaims>
     {
         public PutClaimsValidator()
         {

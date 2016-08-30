@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
-using Hypermedia.Siren;
 using Nancy;
 using Nancy.ModelBinding;
 using Nancy.Validation;
+using Siren;
 
 namespace HypermediaEngine.API.Infrastructure.Errors.Responses
 {

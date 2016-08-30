@@ -1,9 +1,9 @@
 ﻿using FluentValidation;
-using HypermediaEngine.API.Infrastructure.Requests.Commands;
+using HypermediaEngine.API.Infrastructure.Requests.Actions;
 
 namespace HypermediaEngine.API.Public.Authentication.Requests
 {
-    public class PostLoginValidator : ApiCommandValidator<PostLogin>
+    public class PostLoginValidator : ApiActionValidator<PostLogin>
     {
         public PostLoginValidator()
         {

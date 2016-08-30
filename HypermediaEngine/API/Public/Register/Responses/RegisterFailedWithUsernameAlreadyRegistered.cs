@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using Hypermedia.Siren;
 using HypermediaEngine.API.Public.Register.Requests;
 using Nancy;
+using Siren;
 
 namespace HypermediaEngine.API.Public.Register.Responses
 {

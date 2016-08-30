@@ -1,9 +1,9 @@
 ﻿using FluentValidation;
-using HypermediaEngine.API.Infrastructure.Requests.Commands;
+using HypermediaEngine.API.Infrastructure.Requests.Actions;
 
 namespace HypermediaEngine.API.Public.Register.Requests
 {
-    public class PostRegisterValidator : ApiCommandValidator<PostRegister>
+    public class PostRegisterValidator : ApiActionValidator<PostRegister>
     {
         public PostRegisterValidator()
         {

@@ -1,11 +1,11 @@
 using Core.Primitives;
-using HypermediaEngine.API.Infrastructure.Requests.Queries;
+using HypermediaEngine.API.Infrastructure.Requests.Links;
 
 namespace HypermediaEngine.API.Authenticated.Root.Get
 {
-    public class GetRoot : ApiQuery
+    public class GetRoot : ApiLink
     {
-        public GetRoot() : base("Root", "/api", Claim.Public, new[] { "root" })
+        public GetRoot() : base("Root", "/api", new[] { "root" }, Claim.Public)
         {
         }
     }

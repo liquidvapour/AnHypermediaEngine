@@ -4,8 +4,8 @@ using System.Linq;
 using Core.Persistency;
 using Domain;
 using HypermediaEngine.API.Infrastructure.Users;
+using InMemory;
 using Nancy;
-using Nancy.Authentication.Stateless;
 using Nancy.Bootstrapper;
 using Nancy.Conventions;
 using Nancy.Responses.Negotiation;
@@ -15,7 +15,7 @@ using Nancy.ViewEngines.Razor;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
-using Persistency.InMemory;
+using Nancy.Authentication.Stateless;
 
 namespace HypermediaEngine
 {
@@ -39,6 +39,16 @@ namespace HypermediaEngine
         protected override void RequestStartup(TinyIoCContainer container, IPipelines pipelines, NancyContext context)
         {
             base.RequestStartup(container, pipelines, context);
+
+            pipelines.BeforeRequest += nancyContext =>
+            {
+                var acceptHeaders = new List<Tuple<string, decimal>>(nancyContext.Request.Headers.Accept);
+                acceptHeaders.Insert(0, new Tuple<string, decimal>("application/vnd.siren+json", 1m));
+
+                nancyContext.Request.Headers.Accept = acceptHeaders;
+
+                return null;
+            };
 
             pipelines.AfterRequest.AddItemToEndOfPipeline(x =>
             {

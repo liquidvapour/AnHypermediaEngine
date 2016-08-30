@@ -1,10 +1,10 @@
 using System;
 using Core.Primitives;
-using HypermediaEngine.API.Infrastructure.Requests.Commands;
+using HypermediaEngine.API.Infrastructure.Requests.Actions;
 
 namespace HypermediaEngine.API.Authenticated.Users.Delete
 {
-    public class DeleteUser : ApiCommand
+    public class DeleteUser : ApiAction
     {
         public Guid Id { get; set; }
 

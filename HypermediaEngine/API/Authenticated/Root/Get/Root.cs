@@ -2,10 +2,11 @@ using HypermediaEngine.API.Authenticated.Books.List;
 using HypermediaEngine.API.Authenticated.Films.List;
 using HypermediaEngine.API.Authenticated.Paintings.List;
 using HypermediaEngine.API.Authenticated.Users.List;
-using Hypermedia.Siren;
-using HypermediaEngine.API.Infrastructure.Siren;
+using HypermediaEngine.API.Infrastructure.Siren.Actions;
+using HypermediaEngine.API.Infrastructure.Siren.Links;
 using HypermediaEngine.API.Public.Authentication.Requests;
 using Nancy;
+using Siren;
 
 namespace HypermediaEngine.API.Authenticated.Root.Get
 {

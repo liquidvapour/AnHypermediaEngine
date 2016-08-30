@@ -1,5 +1,5 @@
-using Hypermedia.Siren;
 using Nancy;
+using Siren;
 
 namespace HypermediaEngine.API.Public.Authentication.Responses
 {

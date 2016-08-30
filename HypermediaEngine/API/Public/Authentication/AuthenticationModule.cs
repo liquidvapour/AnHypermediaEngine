@@ -8,7 +8,7 @@ using Nancy;
 
 namespace HypermediaEngine.API.Public.Authentication
 {
-    public class AuthenticationModule : ApiModule
+    public class AuthenticationModule : SecureApiModule
     {
         private readonly IRepository _repository;
 

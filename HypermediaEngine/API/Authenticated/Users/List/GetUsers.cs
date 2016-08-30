@@ -1,19 +1,11 @@
 using Core.Primitives;
-using HypermediaEngine.API.Infrastructure.Requests.Queries;
+using HypermediaEngine.API.Infrastructure.Requests.Links;
 
 namespace HypermediaEngine.API.Authenticated.Users.List
 {
-    public class GetUsers : ApiQueryPaged
+    public class GetUsers : ApiLinkPaged
     {
         public GetUsers() : base("Users", "/api/users", Claim.Administrator, new[] { "users" })
-        {
-        }
-
-        public GetUsers(string title) : base(title, "/api/users", Claim.Administrator, new[] { "users" } )
-        {
-        }
-
-        public GetUsers(string title, int pageNumber, int pageSize) : base(title, "/api/users", Claim.Administrator, new[] { "users" }, pageNumber, pageSize)
         {
         }
     }

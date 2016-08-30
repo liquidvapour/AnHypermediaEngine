@@ -1,19 +1,18 @@
 using System;
-using System.Collections.Generic;
 using Core.Primitives;
-using HypermediaEngine.API.Infrastructure.Requests.Queries;
+using HypermediaEngine.API.Infrastructure.Requests.Links;
 
 namespace HypermediaEngine.API.Authenticated.Users.Get
 {
-    public class GetUser : ApiQuery
+    public class GetUser : ApiLink
     {
         public Guid Id { get; set; }
 
-        public GetUser(): base("User", "/api/users/{id}", Claim.Administrator, new[] { "user" })
+        public GetUser(): base("User", "/api/users/{id}", new[] { "user", "detail" }, Claim.Administrator)
         {
         }
 
-        public GetUser(Guid id, IList<string> rel): base("User", "/api/users/{id}", Claim.Administrator, rel)
+        public GetUser(Guid id): this()
         {
             Id = id;
         }

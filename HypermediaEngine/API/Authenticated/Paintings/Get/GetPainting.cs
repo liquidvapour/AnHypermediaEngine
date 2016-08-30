@@ -1,19 +1,18 @@
 using System;
-using System.Collections.Generic;
 using Core.Primitives;
-using HypermediaEngine.API.Infrastructure.Requests.Queries;
+using HypermediaEngine.API.Infrastructure.Requests.Links;
 
 namespace HypermediaEngine.API.Authenticated.Paintings.Get
 {
-    public class GetPainting : ApiQuery
+    public class GetPainting : ApiLink
     {
         public Guid Id { get; set; }
 
-        public GetPainting(): base("Painting", "/api/painting/{id}", Claim.Paintings, new[] { "painting" })
+        public GetPainting(): base("Painting", "/api/paintings/{id}", new[] { "painting", "detail" }, Claim.Paintings)
         {
         }
 
-        public GetPainting(Guid id, IList<string> rel): base("Painting", "/api/paintings/{id}", Claim.Paintings, rel)
+        public GetPainting(Guid id): this()
         {
             Id = id;
         }

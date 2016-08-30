@@ -11,7 +11,7 @@ using HypermediaEngine.API.Public.Register.Responses;
 
 namespace HypermediaEngine.API.Public.Register
 {
-    public class RegisterModule : ApiModule
+    public class RegisterModule : SecureApiModule
     {
         private readonly IRepository _repository;
 

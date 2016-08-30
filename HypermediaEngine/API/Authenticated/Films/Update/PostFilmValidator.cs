@@ -1,9 +1,9 @@
 ﻿using FluentValidation;
-using HypermediaEngine.API.Infrastructure.Requests.Commands;
+using HypermediaEngine.API.Infrastructure.Requests.Actions;
 
 namespace HypermediaEngine.API.Authenticated.Films.Update
 {
-    public class PostFilmValidator : ApiCommandValidator<PostFilm>
+    public class PostFilmValidator : ApiActionValidator<PostFilm>
     {
         public PostFilmValidator()
         {

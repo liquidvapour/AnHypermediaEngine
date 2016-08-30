@@ -39,7 +39,7 @@
     <Compile Include="User.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Core\Core.csproj">
+    <ProjectReference Include="..\Infrastructure\Core\Core.csproj">
       <Project>{15FF1DDB-D62E-4437-971A-42C0E8234E94}</Project>
       <Name>Core</Name>
     </ProjectReference>

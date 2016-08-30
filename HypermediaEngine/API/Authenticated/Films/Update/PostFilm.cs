@@ -1,10 +1,10 @@
 using System;
 using Domain;
-using HypermediaEngine.API.Infrastructure.Requests.Commands;
+using HypermediaEngine.API.Infrastructure.Requests.Actions;
 
 namespace HypermediaEngine.API.Authenticated.Films.Update
 {
-    public class PostFilm : ApiCommand
+    public class PostFilm : ApiAction
     {
         public Guid Id { get; set; }
         public string Name { get; set; }

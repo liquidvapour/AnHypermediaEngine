@@ -1,5 +1,5 @@
 using System;
-using Hypermedia.Siren;
+using Siren;
 
 namespace HypermediaEngine.API.Infrastructure.Exceptions
 {

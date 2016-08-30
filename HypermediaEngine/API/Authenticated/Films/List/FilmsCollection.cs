@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
-using Hypermedia.Siren;
-using HypermediaEngine.API.Infrastructure.Siren;
+using HypermediaEngine.API.Infrastructure.Siren.Links;
 using Nancy;
+using Siren;
 
 namespace HypermediaEngine.API.Authenticated.Films.List
 {

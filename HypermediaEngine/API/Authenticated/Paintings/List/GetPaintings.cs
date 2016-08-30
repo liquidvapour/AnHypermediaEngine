@@ -1,19 +1,11 @@
 using Core.Primitives;
-using HypermediaEngine.API.Infrastructure.Requests.Queries;
+using HypermediaEngine.API.Infrastructure.Requests.Links;
 
 namespace HypermediaEngine.API.Authenticated.Paintings.List
 {
-    public class GetPaintings : ApiQueryPaged
+    public class GetPaintings : ApiLinkPaged
     {
         public GetPaintings() : base("Paintings", "/api/paintings", Claim.Paintings, new[] { "paintings" })
-        {
-        }
-
-        public GetPaintings(string title) : base(title, "/api/paintings", Claim.Paintings, new[] { "paintings" })
-        {
-        }
-
-        public GetPaintings(string title, int pageNumber, int pageSize) : base(title, "/api/paintings", Claim.Paintings, new[] { "paintings" }, pageNumber, pageSize)
         {
         }
     }
