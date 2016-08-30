@@ -48,13 +48,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\HypermediaEngine\HypermediaEngine.csproj">
+    <ProjectReference Include="..\..\HypermediaEngine\HyperMultimedia.csproj">
       <Project>{d9c3f804-c033-4625-8f63-db7140762d18}</Project>
-      <Name>HypermediaEngine</Name>
+      <Name>HyperMultimedia</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\Siren\Siren.csproj">
       <Project>{3B2780C4-3A98-422E-A1D0-59D8D1DB8A36}</Project>
-      <Name>Hypermedia.Siren</Name>
+      <Name>Siren</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\Core\Core.csproj">
       <Project>{15FF1DDB-D62E-4437-971A-42C0E8234E94}</Project>
