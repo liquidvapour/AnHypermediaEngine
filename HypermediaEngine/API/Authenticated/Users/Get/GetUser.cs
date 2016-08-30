@@ -8,7 +8,7 @@ namespace HypermediaEngine.API.Authenticated.Users.Get
     {
         public Guid Id { get; set; }
 
-        public GetUser(): base("User", "/api/users/{id}", new[] { "user", "detail" }, Claim.Administrator)
+        public GetUser(): base("User", "/api/users/{id}", new[] { "user", "detail" }, Claim.Authenticated)
         {
         }
 

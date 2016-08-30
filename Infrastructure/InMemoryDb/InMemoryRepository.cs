@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using Core.Domain;
 using Core.Persistency;
 using Core.Primitives;
@@ -17,30 +16,14 @@ namespace InMemory
         static InMemoryRepository()
         {
             var admin = new User("admin", "pass");
-            admin.SetClaims(new List<Claim> { Claim.Administrator, Claim.Books, Claim.Films, Claim.Paintings });
+            admin.SetClaims(new List<Claim> { Claim.Administrator, Claim.Authenticated });
             Save(admin);
             
-            for (var i = 1; i <= 30; i++)
-            {
-                var user = new User("booksUser" + i, "pass");
-                user.SetClaims(new List<Claim> { Claim.Books });
-                Save(user);
-
-                user = new User("filmsUser" + i, "pass");
-                user.SetClaims(new List<Claim> { Claim.Films });
-                Save(user);
-
-                user = new User("paintingsUser" + i, "pass");
-                user.SetClaims(new List<Claim> { Claim.Paintings });
-                Save(user);
-            }
-
             for (var i = 1; i <= 100; i++)
             {
-                Save(new Book(ISBN.Generate(), "Book" + i, LoremIpsum.Generate()));
-                Save(new Film("Film" + i, LoremIpsum.Generate(), FilmImages.Generate()));
-                Save(new Painting("Painting" + i, LoremIpsum.Generate(), PaintingsImages.Generate()));
-                Thread.Sleep(10);
+                var user = new User("user" + i, "pass");
+                user.SetClaims(new List<Claim> { Claim.Authenticated });
+                Save(user);
             }
         }
 

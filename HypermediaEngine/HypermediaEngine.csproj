@@ -135,27 +135,6 @@
     <Content Include="Website\Views\Siren\Actions\Fields\MultiSelectField.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="API\Authenticated\Books\Get\GetBook.cs" />
-    <Compile Include="API\Authenticated\Books\Get\Book.cs" />
-    <Compile Include="API\Authenticated\Books\List\GetBooks.cs" />
-    <Compile Include="API\Authenticated\Books\List\BooksCollection.cs" />
-    <Compile Include="API\Authenticated\Books\List\BooksCollectionItem.cs" />
-    <Compile Include="API\Authenticated\Books\BooksModule.cs" />
-    <Compile Include="API\Authenticated\Films\Update\PostFilmSuccess.cs" />
-    <Compile Include="API\Authenticated\Films\Update\PostFilm.cs" />
-    <Compile Include="API\Authenticated\Films\List\GetFilms.cs" />
-    <Compile Include="API\Authenticated\Films\Get\GetFilm.cs" />
-    <Compile Include="API\Authenticated\Films\Get\Film.cs" />
-    <Compile Include="API\Authenticated\Films\List\FilmsCollection.cs" />
-    <Compile Include="API\Authenticated\Films\List\FilmsCollectionItem.cs" />
-    <Compile Include="API\Authenticated\Films\FilmsModule.cs" />
-    <Compile Include="API\Authenticated\Films\Update\PostFilmValidator.cs" />
-    <Compile Include="API\Authenticated\Paintings\PaintingsModule.cs" />
-    <Compile Include="API\Authenticated\Paintings\Get\Painting.cs" />
-    <Compile Include="API\Authenticated\Paintings\Get\GetPainting.cs" />
-    <Compile Include="API\Authenticated\Paintings\List\PaintingsCollection.cs" />
-    <Compile Include="API\Authenticated\Paintings\List\PaintingsCollectionItem.cs" />
-    <Compile Include="API\Authenticated\Paintings\List\GetPaintings.cs" />
     <Compile Include="API\Authenticated\Root\Get\GetRoot.cs" />
     <Compile Include="API\Authenticated\Users\Claims\PutClaimsValidator.cs" />
     <Compile Include="API\Authenticated\Users\Delete\DeleteUserSuccess.cs" />

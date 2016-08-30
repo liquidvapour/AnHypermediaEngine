@@ -28,7 +28,7 @@ namespace HypermediaEngine.API.Public.Register
                 throw new HypermediaEngineException(new RegisterFailedWithUsernameAlreadyRegistered(Context, request));
 
             var user = new User(request.Username, request.Password);
-            user.SetClaims(new List<Claim> { Claim.Books });
+            user.SetClaims(new List<Claim> { Claim.Authenticated });
             _repository.SaveOrUpdate(user);
 
             return new UnauthorisedResponse(Context);

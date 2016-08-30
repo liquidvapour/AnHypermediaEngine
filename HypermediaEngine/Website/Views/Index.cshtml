@@ -1,6 +1,4 @@
-﻿@using Core.Primitives
-@using HypermediaEngine.API.Infrastructure.Extensions
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html id="application" lang="en">
     <head>
@@ -22,12 +20,6 @@
         
         <link href="@Url.Content("~/styles/collectionEntity/collectionEntity.css")" rel="stylesheet" media="screen">
         <link href="@Url.Content("~/styles/actions/fields/multiSelectField.css")" rel="stylesheet" media="screen">
-
-        @if (Context.HasUserClaim(Claim.Books))
-        { 
-            <link href="@Url.Content("~/styles/books/booksCollection.css")" rel="stylesheet" media="screen">
-            <link href="@Url.Content("~/styles/books/book.css")" rel="stylesheet" media="screen">
-        }
     </head>
 
     <body>
@@ -129,13 +121,6 @@
         <script src="@Url.Content("~/scripts/siren/entities/single/unauthorised.js")"></script>
         <script src="@Url.Content("~/scripts/siren/entities/single/root/root.js")"></script>
         <script src="@Url.Content("~/scripts/siren/entities/single/root/menu.js")"></script>
-
-
-        @if (Context.HasUserClaim(Claim.Films))
-        {
-            <script src="@Url.Content("~/scripts/siren/entities/collections/filmsCollection.js")"></script>
-            <script src="@Url.Content("~/scripts/siren/entities/collections/filmsCollectionItem.js")"></script>
-        }
 
         <script src="@Url.Content("~/scripts/application.js")"></script>
         

@@ -5,7 +5,7 @@ namespace HypermediaEngine.API.Authenticated.Users.List
 {
     public class GetUsers : ApiLinkPaged
     {
-        public GetUsers() : base("Users", "/api/users", Claim.Administrator, new[] { "users" })
+        public GetUsers() : base("Users", "/api/users", Claim.Authenticated, new[] { "users" })
         {
         }
     }

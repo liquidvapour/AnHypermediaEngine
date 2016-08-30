@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using Core.Primitives;
 using HypermediaEngine.API.Infrastructure.Users;
 using Nancy;
