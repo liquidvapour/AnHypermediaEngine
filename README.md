@@ -11,7 +11,6 @@ Hope you enjoy and find something useful here!
 ## Abstract
 **Integrating through interfaces is fragile...** anytime there's a new feature we have to **develop it on the server and re-deploy**; then **develop it on the client and re-deploy**; the contracts are communicated **out-of-band and hard-coded** (urls, verbs, parameters, validation, application state transitions, ...); then there's outdated clients and **breaking changes**... that lead to convoluted **versioning mechanisms**... ... ... alas it's fragile.
 
-<br />
 >"So, REST is designed to steer developers toward handling change by observing and *adapting to changes in content instead of interfaces.*" - Roy Fielding
 
 <br />
@@ -32,6 +31,10 @@ Hypermedia can also **reduce the load on servers** making it operationally cheap
 Low support overhead as partners usually find it easy to integrate since the Domain Application Protocol is defined explicitly.
 
 
+## Sample Applications 
+* HyperMultimedia: https://hypermultimedia.azurewebsites.net (admin/pass)
+
+
 ## Client
 * Handles user experience
 * Overview
@@ -45,37 +48,19 @@ Low support overhead as partners usually find it easy to integrate since the Dom
     	* The application is the last layer with the default behaviour of rebinding the current response.
     		* The application also handles unexpected errors as exceptions (i.e.: no state transition).
     * Extensions
-    	* Styles (i.e.: Books) 
-	    	* BooksCollection.css
-	    	* Book.css
-    	* Layout (i.e.: Paintings)
-	    	* PaintingsCollection.cshtml
-	    	* PaintingsCollectionItem.cshtml
-    	* Behaviour (i.e.: Films)
-	    	* FilmsCollection.js
-	    	* FilmsCollectionItem.js
+    	* Styles
+    	* Layout
+    	* Behaviour
 * Patterns
-    * Root menu
-    	* Root state binding to a top level menu
-    		* Root.js
-    		* Root.cshtml
-    * Load/unload authenticated extensions
-    	* Client reload on authentication actions (full page reload or javascript driven)
-	    	* Login: Unauthorised.js
-	    	* Logout: Root.js
     * State self refresh
     	* State that self refreshes on successful write operations
     		* Entity.js
     		* CollectionEntity.js
-    		* FilmsCollection.js
-    		* FilmsCollectionItem.js
     * Action state
     	* State that only has links/actions so an action is selected as active by default (i.e.: Login/Register/Reset Password)
     		* ActionEntity.js
     * Sub-state capture
-    	* State managing sub-states for a richer user experience (i.e.: Collections)
-    		* FilmsCollection.js
-    		* FilmsCollectionItem.js
+    	* State managing sub-states for a richer user experience
 
 
 ## Server
@@ -87,9 +72,6 @@ Low support overhead as partners usually find it easy to integrate since the Dom
 * Patterns
 	* API responses demand a context
 		* API responses using the context to manage paging, culture/language, ...
-			* BooksCollection.cs
-			* BooksCollectionItem.cs
-			* Book.cs
 	* The API request is king
 		* Using reflection to generate the Hypermedia links/actions from the API requests (url, verb, parameters, validation, authorisation)
 			* ActionsFactory.cs
@@ -98,8 +80,8 @@ Low support overhead as partners usually find it easy to integrate since the Dom
 
 ## To-do
 * Client
-    * Refresh of root response when cache expires
-    * Html for remaining field types
+    * Refresh of responses when cache expires
+    * Html for all field types
     * Browser controls override (back/forward)
     * Partial views
 * Server
