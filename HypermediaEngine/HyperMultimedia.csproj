@@ -81,6 +81,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Website\Images\cover.jpg" />
+    <Content Include="Website\Images\pattern.png" />
+    <Content Include="Website\Images\preloader.gif" />
     <Content Include="Website\Scripts\Knockout\ModalBinding.js" />
     <Content Include="Website\Scripts\Knockout\ForEachPropertyBinding.js" />
     <Content Include="Website\Scripts\Siren\Entities\Collections\CollectionEntityItem.js" />
@@ -101,6 +104,7 @@
     <Content Include="Website\Scripts\Siren\Properties.js" />
     <Content Include="Web.config" />
     <Content Include="Website\Scripts\Vendor\bootstrap.min.js" />
+    <Content Include="Website\Scripts\Vendor\custom.js" />
     <Content Include="Website\Scripts\Vendor\imagesloaded.pkgd.js" />
     <Content Include="Website\Scripts\Vendor\jquery-1.11.1.min.js" />
     <Content Include="Website\Scripts\Vendor\jquery.cbpQTRotator.js" />
@@ -109,9 +113,13 @@
     <Content Include="Website\Scripts\Vendor\jquery.sticky.js" />
     <Content Include="Website\Scripts\Vendor\knockout-3.3.0.js" />
     <Content Include="Website\Scripts\Vendor\knockout-switch-case.min.js" />
+    <Content Include="Website\Scripts\Vendor\knockout.mapping-latest.js" />
     <Content Include="Website\Scripts\Vendor\knockout.validation.js" />
+    <Content Include="Website\Scripts\Vendor\knockstrap.min.js" />
     <Content Include="Website\Scripts\Vendor\modernizr.custom.js" />
+    <Content Include="Website\Scripts\Vendor\moment.min.js" />
     <Content Include="Website\Scripts\Vendor\smoothscroll.js" />
+    <Content Include="Website\Scripts\Vendor\underscore.js" />
     <Content Include="Website\Scripts\Vendor\underscore.min.js" />
     <Content Include="Website\Scripts\Vendor\waypoints.min.js" />
     <Content Include="Website\Scripts\Vendor\wow.min.js" />
@@ -236,9 +244,7 @@
     <Content Include="Website\Fonts\fontawesome-webfont.woff" />
     <Content Include="Website\Fonts\fontawesome-webfont.woff2" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Website\Images\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Infrastructure\Siren\Siren.csproj">
       <Project>{3b2780c4-3a98-422e-a1d0-59d8d1db8a36}</Project>
