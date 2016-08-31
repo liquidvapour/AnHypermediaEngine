@@ -60,6 +60,9 @@ Low support overhead as partners usually find it easy to integrate since the Dom
     		* ActionEntity.js
     * Sub-state capture
     	* State managing sub-states for a richer user experience
+    * Self submitting action
+    	* Actions that can be submitted with a single atomic field value change
+    		* SelfSubmittingAction.js
 
 
 ## Server
@@ -91,5 +94,4 @@ Low support overhead as partners usually find it easy to integrate since the Dom
 
 
 ## Food for Thought
-* What is the  application.js? What is the root.js? What is the entity.js?
 * Could we implement the API as a full blown FSM using only the API requests and responses?
