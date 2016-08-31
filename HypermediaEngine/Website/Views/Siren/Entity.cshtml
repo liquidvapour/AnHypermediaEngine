@@ -1,5 +1,69 @@
-﻿<!-- ko switch -->
-<!-- ko case: $else -->
-@Html.Partial(Url.Content("siren/entities/single/entity.cshtml"))
-<!-- /ko -->
-<!-- /ko -->
+﻿<div class="container">
+    <div class="row">
+        <div class="col-sm-6 col-sm-offset-3">
+            <div class="pfblock-header">
+                <h3 data-bind="text: $data.title" class="pfblock-title"></h3>
+                <div class="pfblock-line"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ko switch -->
+    <!-- ko case: $data.class()[0] === 'quote' && $data.properties().length > 0 -->
+    <div class="row">
+        <div class="col-sm-7">
+            @Html.Partial(Url.Content("siren/actions.cshtml"))
+        </div>
+
+        <div class="col-sm-4">
+                @Html.Partial(Url.Content("siren/properties.cshtml"))
+        </div>
+    </div>
+    <!-- /ko -->
+    <!-- ko case: $else -->
+    @Html.Partial(Url.Content("siren/actions.cshtml"))
+
+    <div class="row">
+        <div class="col-sm-6 col-sm-offset-3">
+            <div class="pfblock-header">
+                @Html.Partial(Url.Content("siren/properties.cshtml"))
+            </div>
+        </div>
+    </div>
+    <!-- /ko -->
+    <!-- /ko -->
+
+    <div class="text-center">
+        <!-- ko foreach: links -->
+        <a href="#" data-bind="click: execute">
+            <span data-bind="text: title"></span>
+        </a>
+        <!-- /ko -->
+    </div>
+
+    <table data-bind="if: $data.entities" class="table table-striped table-bordered text-center">
+        <thead data-bind="with: _.first($data.entities())">
+            <tr>
+                <!-- ko foreach: properties -->
+                <th class="text-center" data-bind="text: key" style="text-transform: capitalize"></th>
+                <!-- /ko -->
+                <!-- ko foreach: actions -->
+                <th></th>
+                <!-- /ko -->
+            </tr>
+        </thead>
+
+        <tbody data-bind="foreach: $data.entities">
+            <tr>
+                <!-- ko foreach: properties -->
+                <td data-bind="text: value" style="text-transform: capitalize"></td>
+                <!-- /ko -->
+                <!-- ko foreach: actions -->
+                <td class="text-center" style="text-transform: capitalize">
+                    <a href="#" data-bind="text: title, click: execute"></a>
+                </td>
+                <!-- /ko -->
+            </tr>
+        </tbody>
+    </table>
+</div>

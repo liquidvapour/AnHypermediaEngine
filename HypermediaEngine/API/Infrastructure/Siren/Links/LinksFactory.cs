@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Core.Primitives;
 using HypermediaEngine.API.Infrastructure.Extensions;
 using HypermediaEngine.API.Infrastructure.Requests.Links;
 using Nancy;
@@ -30,16 +29,10 @@ namespace HypermediaEngine.API.Infrastructure.Siren.Links
 
         public LinksFactory With<T>(T request, params WithLink<T>[] overrides) where T : ApiLink
         {
-            if (request.Claim != Claim.Public)
-                if (_context.HasUserClaim(request.Claim) == false)
-                    return this;
+            if (request.RequiresAuthentication && _context.IsUserAuthenticated() == false)
+                return this;
 
-            Link link;
-
-            if (request is ApiLinkPaged)
-                link = GetPagedSirenLink(request);
-            else
-                link = GetSirenLink(request);
+            var link = GetSirenLink(request);
 
             foreach (var @override in overrides)
                 @override.Apply(link);
@@ -49,26 +42,9 @@ namespace HypermediaEngine.API.Infrastructure.Siren.Links
             return this;
         }
 
-        public LinksFactory WithPage<T>(int pageNumber, int pageSize, int totalEntries) where T : ApiLinkPaged, new()
-        {
-            if (pageNumber > 0)
-                With(new T { PageNumber = pageNumber - 1, PageSize = pageSize }, WithLink<T>.Property(x => x.Title = "Previous"));
-
-            double followingNumberOfPages = (totalEntries / pageSize) - pageNumber;
-            if (followingNumberOfPages > 0.0d)
-                With(new T { PageNumber = pageNumber + 1, PageSize = pageSize }, WithLink<T>.Property(x => x.Title = "Next"));
-
-            return this;
-        }
-
         private Link GetSirenLink<T>(T request) where T : ApiLink
         {
-            return new Link(request.Title, _context.Request.Url.SiteBase + _context.Request.Url.BasePath + GetHrefWithProperties(request), request.Rel.ToArray());
-        }
-
-        private Link GetPagedSirenLink<T>(T request) where T : ApiLink
-        {
-            return new Link(request.Title, _context.Request.Url.SiteBase + _context.Request.Url.BasePath + GetHrefWithProperties(request), new List<string>(request.Rel) { "collection" }.ToArray());
+            return new Link(request.Title, _context.GetFullUrlFor(GetHrefWithProperties(request)), request.Rel.ToArray());
         }
 
         private string GetHrefWithProperties<T>(T request) where T : ApiLink
@@ -90,7 +66,7 @@ namespace HypermediaEngine.API.Infrastructure.Siren.Links
                 var value = property.GetValue(request, null);
                 if (value != null && value.Equals(DefaultOf(property.PropertyType)))
                     value = null;
-                
+
                 var propertyName = property.Name.FormatAsName();
                 var propertyValueTemplate = "{" + propertyName + "}";
 

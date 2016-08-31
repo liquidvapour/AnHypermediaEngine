@@ -1,4 +1,4 @@
-using FluentValidation;
+﻿using FluentValidation;
 
 namespace HypermediaEngine.API.Infrastructure.Requests.Actions
 {

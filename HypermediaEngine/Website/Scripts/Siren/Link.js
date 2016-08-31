@@ -1,9 +1,17 @@
-﻿function SirenLink(sirenLink, entityAddress) {
-    this.entityAddress = ko.observable(entityAddress);
+﻿function SirenLink(postbox, link) {
+    this.postbox = postbox;
 
-    ko.mapping.fromJS(sirenLink, null, this);
+    this.title = link.title;
+    this.href = ko.observable();
+    this.rel = link.rel;
+
+    this.load(link);
 
     return this;
+};
+
+SirenLink.prototype.load = function (link) {
+    this.href(link.href);
 };
 
 SirenLink.prototype.execute = function (callback) {
@@ -15,9 +23,6 @@ SirenLink.prototype.get = function (href, callback) {
         $.ajax({
             type: "GET",
             url: href,
-            beforeSend: function (xhr) {
-                xhr.setRequestHeader("Authorization", this.getCookie("accessToken"));
-            }.bind(this),
             success: callback,
             error: this.handleError.bind(this),
             dataType: "json"
@@ -27,9 +32,6 @@ SirenLink.prototype.get = function (href, callback) {
         $.ajax({
             type: "GET",
             url: href,
-            beforeSend: function (xhr) {
-                xhr.setRequestHeader("Authorization", this.getCookie("accessToken"));
-            }.bind(this),
             success: this.handleSuccess.bind(this),
             error: this.handleError.bind(this),
             dataType: "json"
@@ -37,22 +39,10 @@ SirenLink.prototype.get = function (href, callback) {
     }
 };
 
-SirenLink.prototype.handleSuccess = function (data) {
-    postbox.notifySubscribers(data, this.entityAddress());
+SirenLink.prototype.handleSuccess = function (response) {
+    this.postbox.notifySubscribers(response, "refresh");
 };
 
 SirenLink.prototype.handleError = function (jqXHR, textStatus, errorThrown) {
-    postbox.notifySubscribers(JSON.parse(jqXHR.responseText), this.entityAddress());
-};
-
-
-SirenLink.prototype.getCookie = function(cookieName) {
-    var name = cookieName + "=";
-    var ca = document.cookie.split(';');
-    for (var i = 0; i < ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0) == ' ') c = c.substring(1);
-        if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
-    }
-    return "";
+    alert("There was an error processing your request: \n\n" + jqXHR.responseText);
 };

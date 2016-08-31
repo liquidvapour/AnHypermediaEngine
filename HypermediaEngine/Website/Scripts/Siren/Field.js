@@ -1,42 +1,84 @@
-﻿function SirenField(sirenField) {
-    this.subscriptions = [];
-    
-    this.value = ko.observable();
-    
-    ko.mapping.fromJS(sirenField, {}, this);
+﻿function SirenField(field) {
+    this.type = field.type;
 
-    if (sirenField.required == true) {
+    this.title = field.title;
+    this.name = field.name;
+
+    this.value = ko.observable();
+
+    this.min = field.min;
+    this.max = field.max;
+    this.step = field.step;
+
+    if (field.required === true) {
         this.value.extend({ required: true });
     }
     
-    if (sirenField.type == 'email') {
+    if (field.type === "email") {
         this.value.extend({ email: true });
     }
 
-    if (sirenField.type == 'number') {
+    if (field.type === "number") {
         this.value.extend({ number: true });
 
-        if (sirenField.min) {
-            this.value.extend({ min: sirenField.min });
+        if (field.min) {
+            this.value.extend({ min: field.min });
         }
     
-        if (sirenField.step) {
-            this.value.extend({ step: sirenField.step });
+        if (field.step) {
+            this.value.extend({ step: field.step });
+        }
+
+        if (field.max) {
+            this.value.extend({ max: field.max });
         }
     }
+
+    if (field.type === "select") {
+        this.options = ko.observableArray();
+
+        if (field.optionsLookup) {
+            this.optionsLookupHref = ko.observable();
+        }
+    }
+
+    this.load(field);
 
     return this;
 };
 
-SirenField.prototype.dispose = function () {
-    ko.utils.arrayForEach(this.subscriptions, this.disposeEach);
-    ko.utils.objectForEach(this, this.disposeEach);
+SirenField.prototype.load = function (field) {
+    if (this.value() != field.value) {
+        this.value(field.value);
+    }
+
+    if (field.type === "select") {
+        if (field.options) {
+            this.options(field.options);
+        }
+
+        if (field.optionsLookup) {
+            if (this.optionsLookupHref() !== field.optionsLookup.href) {
+                this.optionsLookupHref(field.optionsLookup.href);
+
+                $.ajax({
+                    type: "GET",
+                    url: field.optionsLookup.href,
+                    success: this.loadOptions.bind(this)
+                });
+            }
+        }
+    }
 };
 
-SirenField.prototype.disposeEach = function (propOrValue, value) {
-    var disposable = value || propOrValue;
+SirenField.prototype.loadOptions = function (response) {
+    var options = [];
 
-    if (disposable && typeof disposable.dispose === "function") {
-        disposable.dispose();
+    for (var key in response.properties) {
+        if (response.properties.hasOwnProperty(key)) {
+            options.push({ key: key, value: response.properties[key] });
+        }
     }
+
+    this.options(options);
 };

@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Core.Primitives;
 
 namespace HypermediaEngine.API.Infrastructure.Requests.Links
 {
@@ -7,7 +6,7 @@ namespace HypermediaEngine.API.Infrastructure.Requests.Links
     {
         public IList<string> Rel { get; private set; }
 
-        protected ApiLink(string title, string href, IList<string> rel, Claim claim) : base(title, href, claim)
+        protected ApiLink(string title, string href, IList<string> rel, bool requiresAuthentication = false) : base(title, href, requiresAuthentication)
         {
             Rel = rel;
         }

@@ -1,5 +1,49 @@
-﻿@Html.Partial(Url.Content("siren/actions/activeAction.cshtml"))
+﻿<!-- ko foreach: $data.actions -->
+<div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+        <div role="form">
+            <div class="ajax-hidden text-center">
+                <span data-bind="text: $data.serverError"></span>
 
-<br/>
+                <!-- ko foreach: fields -->
+                <div class="form-group wow fadeInUp animated" data-wow-delay=".1s">
+                    <!-- ko if: $data.type == 'string' || $data.type == 'password'-->
+                    <label class="sr-only" data-bind="text: title, attr: { for: name }"></label>
+                    <input data-bind="value: $data.value, attr: { name: name, type: type, placeholder: title }" class="form-control">
+                    <!-- /ko -->
 
-@Html.Partial(Url.Content("siren/actions/activeActionLinks.cshtml"))
+
+                    <!-- ko if: $data.type == 'number' -->
+                    <label class="sr-only" data-bind="text: title, attr: { for: name }"></label>
+                    <input data-bind="value: $data.value, attr: { name: name, type: type, placeholder: title, min: min, max: max, step: step }" class="form-control">
+                    <!-- /ko -->
+
+                    <!-- ko if: $data.type == 'select' -->
+                    <select data-bind="options: $data.options,
+                                        optionsText: function(item) { return item.value },
+                                        optionsValue: function(item) { return item.key },
+                                        value: $data.value,
+                                        valueAllowUnset: true,
+                                        optionsAfterRender: function (option, item) {
+                                                                        ko.applyBindingsToNode(option, {
+                                                                            disable: item.key === ''
+                                                                        }, item);
+                                                                },
+                                        attr: { name: name, placeholder: title }" class="form-control"></select>
+                    <!-- /ko -->
+                </div>
+                <!-- /ko -->
+
+                <!-- ko switch -->
+                <!-- ko case: $data instanceof SelfSubmitSirenAction -->
+                <!-- /ko -->
+                <!-- ko case: $else -->
+                <button data-bind="click: $data.execute.bind($data), text: title" type="submit" class="btn btn-lg wow fadeInUp animated" data-wow-delay=".1s"></button>
+                <!-- /ko -->
+                <!-- /ko -->
+            </div>
+            <div class="ajax-response"></div>
+        </div>
+    </div>
+</div>
+<!-- /ko -->

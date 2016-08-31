@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using Core.Persistency;
-using Domain;
+using Domain.Users;
 using HypermediaEngine.API.Infrastructure.Users;
-using InMemory;
+using InMemoryDb;
 using Nancy;
+using Nancy.Authentication.Stateless;
 using Nancy.Bootstrapper;
 using Nancy.Conventions;
 using Nancy.Responses.Negotiation;
@@ -15,7 +16,6 @@ using Nancy.ViewEngines.Razor;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
-using Nancy.Authentication.Stateless;
 
 namespace HypermediaEngine
 {
@@ -52,18 +52,17 @@ namespace HypermediaEngine
 
             pipelines.AfterRequest.AddItemToEndOfPipeline(x =>
             {
-                x.Response.Headers.Add("Access-Control-Allow-Headers", "AUTHORIZATION");
                 x.Response.Headers.Add("Access-Control-Allow-Origin", "*");
-                x.Response.Headers.Add("Access-Control-Allow-Methods", "POST,GET,DELETE,PUT,OPTIONS");
+                x.Response.Headers.Add("Access-Control-Allow-Methods", "POST,GET,DELETE,PUT,PATCH,OPTIONS");
             });
 
             StatelessAuthentication.Enable(pipelines, new StatelessAuthenticationConfiguration(ctx =>
             {
                 var statelessAuthenticator = container.Resolve<IStatelessAuthenticator>();
-                
-                var accessToken = string.IsNullOrWhiteSpace(ctx.Request.Headers.Authorization) 
-                                                ? ctx.Request.Cookies["accessToken"]
-                                                : ctx.Request.Headers.Authorization;
+
+                var accessToken = ctx.Request.Query["accessToken"];
+                if (accessToken == null)
+                    return null;
 
                 return statelessAuthenticator.GetUserIdentityBy(new Guid(accessToken));
             }));
@@ -129,7 +128,7 @@ namespace HypermediaEngine
 
         public IUserIdentity GetUserIdentityBy(Guid accessToken)
         {
-            var user = _repository.SingleOrDefault<User>(x => x.AccessTokens.Any(y => y == accessToken));
+            var user = _repository.SingleOrDefault<Sender>(x => x.AccessTokens.Any(y => y == accessToken));
             if (user == null)
                 return null;
 
@@ -137,8 +136,7 @@ namespace HypermediaEngine
             {
                 Id = user.Id,
                 UserName = user.Username,
-                AccessToken = accessToken,
-                Claims = user.Claims.Select(x => x.ToString()).ToList()
+                AccessToken = accessToken
             };
         }
     }

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Core.Primitives;
 using HypermediaEngine.API.Infrastructure.Extensions;
 using HypermediaEngine.API.Infrastructure.Requests.Actions;
 using Nancy;
@@ -31,11 +30,11 @@ namespace HypermediaEngine.API.Infrastructure.Siren.Actions
 
         public ActionsFactory With<T>(T request, params IWithAction<T>[] overrides) where T : ApiAction
         {
-            if (request.Claim != Claim.Public)
-                if (_context.HasUserClaim(request.Claim) == false)
-                    return this;
+            if (request.RequiresAuthentication && _context.IsUserAuthenticated() == false)
+                return this;
 
             var href = request.Href;
+
             IList<Field> fields = null;
 
             var properties = typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance);

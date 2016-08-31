@@ -1,13 +1,7 @@
-﻿<div data-bind="with: $data.properties" class="pfblock-subtitle">
-    <div data-bind="foreachproperty: $data">
-        <!-- ko switch -->
-        <!-- ko case:  $data.value().substring(0, 7) === 'http://' -->
-        @Html.Partial(Url.Content("siren/properties/imageProperty.cshtml"))
-        <!-- /ko -->
-
-        <!-- ko case: $else -->
-        @Html.Partial(Url.Content("siren/properties/textProperty.cshtml"))
-        <!-- /ko -->
-        <!-- /ko -->        
+﻿<div>
+    <div data-bind="foreach: $data.properties">
+        <div class="row form-group wow fadeInUp animated" data-wow-delay=".1s">
+            <strong><span data-bind="text: $data.key" style="text-transform: capitalize;"></span>:</strong> <span data-bind="text: $data.value"></span>
+        </div>
     </div>
 </div>

@@ -34,11 +34,7 @@
     <Compile Include="Domain\IEntity.cs" />
     <Compile Include="Domain\IValueObject.cs" />
     <Compile Include="Persistency\IRepository.cs" />
-    <Compile Include="Primitives\Claim.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="System" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

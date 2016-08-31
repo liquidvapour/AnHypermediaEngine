@@ -1,29 +1,44 @@
-﻿function SirenAction(sirenAction, entityAddress) {
-    this.subscriptions = [];
-    this.error = ko.observable();
-    
-    this.entityAddress = ko.observable(entityAddress);
+﻿function SirenAction(postbox, action) {
+    this.postbox = postbox;
 
+    this.title = action.title;
+    this.name = action.name;
+
+    this.method = action.method;
+    this.href = ko.observable();
+
+    this.type = action.type;
     this.fields = ko.observableArray();
 
-    this.name = ko.observable();
-    this.actionLinkName = ko.observable();
-
-    ko.mapping.fromJS(sirenAction, SirenMappings.prototype.ActionMapping, this);
-
-    this.errors = ko.validation.group([this.fields], { deep: true, observable: false });
-
-    if (this.name() === "update") {
-        this.actionLinkName("Edit");
-    }
-    else {
-        this.actionLinkName(this.title());
-    }
+    this.serverError = ko.observable();
+    this.errors = ko.observableArray();
+    this.load(action);
 
     return this;
 };
 
+SirenAction.prototype.load = function (action) {
+    this.href(action.href);
+
+    if (action.fields) {
+        this.fields.remove(function (field) { return !_.any(action.fields, function (responseField) { return field.name === responseField.name; }); });
+        for (var fieldIndex = 0; fieldIndex < action.fields.length; fieldIndex++) {
+            var currentField = _.filter(this.fields(), function (field) { return field.name === action.fields[fieldIndex].name; })[0];
+
+            if (currentField) {
+                currentField.load(action.fields[fieldIndex]);
+            } else {
+                this.fields.push(new SirenField(action.fields[fieldIndex]));
+            }
+        }
+
+        this.errors = ko.validation.group([this.fields], { deep: true, observable: false });
+    }
+};
+
 SirenAction.prototype.isValid = function () {
+    this.serverError(null);
+
     if (this.errors().length > 0) {
         this.errors.showAllMessages(true);
         return false;
@@ -33,37 +48,38 @@ SirenAction.prototype.isValid = function () {
 };
 
 SirenAction.prototype.execute = function () {
-    this.error(undefined);
-    
     if (this.isValid() === false) {
         return false;
     }
 
-    if (this.method() === "GET") {
+    if (this.method === "GET") {
         this.get(this.href(), this.getQueryPayload());
     }
-    else if (this.method() === "POST") {
+    else if (this.method === "POST") {
         this.post(this.href(), this.getCommandPayload());
     }
-    else if (this.method() === "PUT") {
+    else if (this.method === "PUT") {
         this.put(this.href(), this.getCommandPayload());
     }
-    else if (this.method() === "DELETE") {
+    else if (this.method === "PATCH") {
+        this.patch(this.href(), this.getCommandPayload());
+    }
+    else if (this.method === "DELETE") {
         this.delete(this.href());
     }
 };
 
 
 SirenAction.prototype.get = function (href, parameters) {
+    if (_.contains(href, "?")) {
+        parameters = parameters.replace("?", "&");
+    }
+
     $.ajax({
         type: "GET",
         url: href + parameters,
-        beforeSend: function (xhr) {
-            xhr.setRequestHeader("Authorization", this.getCookie("accessToken"));
-        }.bind(this),
         success: this.handleSuccess.bind(this),
-        error: this.handleError.bind(this),
-        dataType: "application/vnd.siren+json"
+        error: this.handleError.bind(this)
     });
 };
 
@@ -76,9 +92,12 @@ SirenAction.prototype.getQueryPayload = function () {
                 parameters += "&";
             }
 
-            parameters += this.fields()[i].name() + "=" + this.fields()[i].value();
+            parameters += this.fields()[i].name + "=" + this.fields()[i].value();
         }
     }
+
+    if (parameters === "?")
+        return "";
 
     return parameters;
 };
@@ -89,9 +108,18 @@ SirenAction.prototype.post = function (href, payload) {
         type: "POST",
         url: href,
         data: payload,
-        beforeSend: function (xhr) {
-            xhr.setRequestHeader("Authorization", this.getCookie("accessToken"));
-        }.bind(this),
+        success: this.handleSuccess.bind(this),
+        error: this.handleError.bind(this),
+        contentType: "application/x-www-form-urlencoded",
+        dataType: "json"
+    });
+};
+
+SirenAction.prototype.patch = function (href, payload) {
+    $.ajax({
+        type: "PATCH",
+        url: href,
+        data: payload,
         success: this.handleSuccess.bind(this),
         error: this.handleError.bind(this),
         contentType: "application/x-www-form-urlencoded",
@@ -104,9 +132,6 @@ SirenAction.prototype.put = function (href, payload) {
         type: "PUT",
         url: href,
         data: payload,
-        beforeSend: function (xhr) {
-            xhr.setRequestHeader("Authorization", this.getCookie("accessToken"));
-        }.bind(this),
         success: this.handleSuccess.bind(this),
         error: this.handleError.bind(this),
         contentType: "application/x-www-form-urlencoded",
@@ -118,9 +143,6 @@ SirenAction.prototype.delete = function (href) {
     $.ajax({
         type: "DELETE",
         url: href,
-        beforeSend: function (xhr) {
-            xhr.setRequestHeader("Authorization", this.getCookie("accessToken"));
-        }.bind(this),
         success: this.handleSuccess.bind(this),
         error: this.handleError.bind(this),
         contentType: "application/x-www-form-urlencoded",
@@ -137,7 +159,7 @@ SirenAction.prototype.getCommandPayload = function () {
                 parameters += "&";
             }
 
-            parameters += this.fields()[i].name() + "=" + this.fields()[i].value();
+            parameters += this.fields()[i].name + "=" + this.fields()[i].value();
         }
     }
 
@@ -147,39 +169,12 @@ SirenAction.prototype.getCommandPayload = function () {
 
 SirenAction.prototype.handleSuccess = function (data) {
     if (_.contains(data.class, "error")) {
-        this.error(data.properties["error Message"]);
-    }
-    else {
-        postbox.notifySubscribers(data, this.entityAddress());
+        this.serverError(data.properties["error Message"]);
+    } else {
+        this.postbox.notifySubscribers(data, "refresh");
     }
 };
 
 SirenAction.prototype.handleError = function (jqXHR, textStatus, errorThrown) {
-    postbox.notifySubscribers(JSON.parse(jqXHR.responseText), this.entityAddress());
-};
-
-
-SirenAction.prototype.getCookie = function(cookieName) {
-    var name = cookieName + "=";
-    var ca = document.cookie.split(';');
-    for (var i = 0; i < ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0) == ' ') c = c.substring(1);
-        if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
-    }
-    return "";
-};
-
-
-SirenAction.prototype.dispose = function () {
-    ko.utils.arrayForEach(this.subscriptions, this.disposeEach);
-    ko.utils.objectForEach(this, this.disposeEach);
-};
-
-SirenAction.prototype.disposeEach = function (propOrValue, value) {
-    var disposable = value || propOrValue;
-
-    if (disposable && typeof disposable.dispose === "function") {
-        disposable.dispose();
-    }
+    alert("There was an error processing your request: \n\n" + jqXHR.responseText);
 };

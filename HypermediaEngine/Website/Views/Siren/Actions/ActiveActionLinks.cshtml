@@ -1,9 +1,0 @@
-﻿<div class="row text-center">
-    <div class="col-sm-6 col-sm-offset-3">
-        <!-- ko foreach: $data.actions -->
-        <!-- ko if: !$parent.isActionActive($data) -->
-        <a href="#" data-bind="click: $parent.activateAction.bind($parent), text: actionLinkName" class="wow fadeInUp animated" data-wow-delay=".1s" style="text-transform: capitalize;"></a>&nbsp;&nbsp;&nbsp;
-        <!-- /ko -->
-        <!-- /ko -->
-    </div>
-</div>
