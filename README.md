@@ -33,6 +33,7 @@ Low support overhead as partners usually find it easy to integrate since the Dom
 
 ## Sample Applications 
 * HyperMultimedia: https://hypermultimedia.azurewebsites.net (admin/pass)
+* HyperRemittances: https://hyperremittances.azurewebsites.net
 
 
 ## Client
