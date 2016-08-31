@@ -40,9 +40,7 @@ Low support overhead as partners usually find it easy to integrate since the Dom
 * Handles user experience
 * Overview
     * Bootstrap
-        * Gets the root response and caches it in the form of a top level menu;
-        * Executes the first link in the menu; and
-        * Binds the current response.
+        * Gets the root response and binds it as the current response.
     * Transitions
     	* Link/action execution results in a new message that bubbles up through the current response object graph;
     	* The parent object may choose to react to the message and/or bubble up to the next layer; and
