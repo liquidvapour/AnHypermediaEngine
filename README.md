@@ -14,6 +14,7 @@ Hope you enjoy and find something useful here!
 >"So, REST is designed to steer developers toward handling change by observing and *adapting to changes in content instead of interfaces.*" - Roy Fielding
 
 <br />
+
 Hypermedia **reflects business processes** at an application level (Domain Application Protocol).
 
 The client is decoupled from the server, meaning changes to the business processes are communicated instantly by the server, promoting business reactiveness at an application level.
@@ -22,6 +23,7 @@ The server takes ownership of the Domain Application Protocol, so **the clients 
 This also enables **quick prototypes** and **quick time to market** on multiple platforms at once.
 
 The clients logic becomes User eXperience extensions over the Domain Application Protocol provided by the server.
+
 
 Hypermedia can also **reduce the load on servers** making it operationally cheap (and green in the environmental sense):
 * Single load of the client (html/css/js);
